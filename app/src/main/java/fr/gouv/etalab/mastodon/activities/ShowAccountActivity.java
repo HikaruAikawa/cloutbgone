@@ -63,6 +63,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 
 import fr.gouv.etalab.mastodon.R;
@@ -651,12 +653,29 @@ public class ShowAccountActivity extends BaseActivity implements OnPostActionInt
         account_note.setText(account.getNoteSpan(), TextView.BufferType.SPANNABLE);
         account_note.setMovementMethod(LinkMovementMethod.getInstance());
         if (tabLayout.getTabAt(0) != null && tabLayout.getTabAt(1) != null && tabLayout.getTabAt(2) != null) {
+            String[] strings = {
+                    "Soooooooo many",
+                    "Who cares?",
+                    "I won't tell",
+                    "The best number!",
+                    "Zero to infinity",
+                    "Some, but not many",
+                    "Yep, they sure are",
+                    "Take a guess",
+                    "I can't count",
+                    "But it's a surprise!",
+                    "Stay and find out"
+            };
             //noinspection ConstantConditions
             tabLayout.getTabAt(0).setText(getString(R.string.status_cnt, withSuffix(account.getStatuses_count())));
+            // Yes, I know you're not supposed to do this, but I don't care that much!
+            Random random = new Random();
+            int randomInt1 = random.nextInt(strings.length);
+            int randomInt2 = random.nextInt(strings.length);
             //noinspection ConstantConditions
-            tabLayout.getTabAt(1).setText(getString(R.string.following_cnt, withSuffix(account.getFollowing_count())));
+            tabLayout.getTabAt(1).setText(getString(R.string.following_cnt, strings[randomInt1]));
             //noinspection ConstantConditions
-            tabLayout.getTabAt(2).setText(getString(R.string.followers_cnt, withSuffix(account.getFollowers_count())));
+            tabLayout.getTabAt(2).setText(getString(R.string.followers_cnt, strings[randomInt2]));
 
             //Allows to filter by long click
             final LinearLayout tabStrip = (LinearLayout) tabLayout.getChildAt(0);
