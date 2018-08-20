@@ -711,7 +711,7 @@ public class TootActivity extends BaseActivity implements OnRetrieveSearcAccount
             // Continue only if the File was successfully created
             if (photoFile != null) {
                 photoFileUri = FileProvider.getUriForFile(this,
-                        "fr.gouv.etalab.mastodon.fileProvider",
+                        "com.hikaruaikawa.cloutbgone.fileProvider",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoFileUri);
                 startActivityForResult(takePictureIntent, TAKE_PHOTO);
